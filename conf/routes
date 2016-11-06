@@ -1,0 +1,12 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /				            @controllers.ApplicationController.index
+GET     /liveTweets         		@controllers.ApplicationController.liveTweets(query: java.util.List[String])
+GET     /stream					    @controllers.ApplicationController.stream(query: String)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET /assets/*file controllers.Assets.at(path="/public", file)
