@@ -1,0 +1,1 @@
+Este projeto foi feito para aula de stream do curso de Ciência da Computação/Sistemas de Informação, para a aula de Streams na matéria Desenvolvimento de Sistemas Distribuídos e o seu desenvolvimento é explicado no blog www.dirceuprofessor.blogspot.com.br

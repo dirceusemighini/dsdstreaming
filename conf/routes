@@ -4,7 +4,6 @@
 
 # Home page
 GET     /				            @controllers.ApplicationController.index
-GET     /liveTweets         		@controllers.ApplicationController.liveTweets(query: java.util.List[String])
 GET     /stream					    @controllers.ApplicationController.stream(query: String)
 
 

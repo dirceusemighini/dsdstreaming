@@ -34,7 +34,10 @@ public class ApplicationController extends Controller {
     private static ActorSystem system = ActorSystem.create("mixedTweets");
 
     private static Materializer mat = ActorMaterializerImpl.create(system);
-    static final Pair<ActorRef, Publisher<Object>> ti = Source.actorRef(100, OverflowStrategy.fail()).toMat(Sink.asPublisher(AsPublisher.WITHOUT_FANOUT), Keep.both()).run(mat);//.actorPublisher(publisher);
+    static final Pair<ActorRef, Publisher<Object>> ti =
+            Source.actorRef(100, OverflowStrategy.fail()).
+                    toMat(Sink.asPublisher(AsPublisher.WITHOUT_FANOUT),
+                            Keep.both()).run(mat);
     static ActorRef socketActor = ti.first();
     static Publisher<Object> publisher = ti.second();
 
@@ -48,15 +51,10 @@ public class ApplicationController extends Controller {
         return ok().chunked(eventSource.via(EventSource.flow())).as(Http.MimeTypes.HTML);
     }
 
-    public play.mvc.Result liveTweets(List<String> query) {
-        return stream((query.get(0)));
-    }
 
     public play.mvc.Result index() {
         //default search
-        List<String> list = new ArrayList();
-        list.add("java");
-        list.add("ruby");
-        return redirect(routes.ApplicationController.liveTweets(list));
+        String query = "java,ruby";
+        return redirect(routes.ApplicationController.stream(query));
     }
 }
